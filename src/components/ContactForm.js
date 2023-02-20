@@ -19,11 +19,15 @@ export class ContactForm extends Component {
         this.setState({ number: evt.target.value });
     }
 
+    handleOnSubmit = (e) => {
+        this.props.onFormSubmit(e)
+        this.setState({ name: '', number: '' })
+    }
+
     render() {
         const { name, number } = this.state;
-        const { onFormSubmit } = this.props;
         return (
-            <form onSubmit={onFormSubmit} >
+            <form onSubmit={this.handleOnSubmit} >
                 <fieldset className={(css.formEl)}>
                     <label htmlFor="contactName" className={(css.formLabel)}>Name</label>
                     <input
@@ -51,7 +55,7 @@ export class ContactForm extends Component {
                     />
                     <button type="submit" className={(css.formSubmit)}>Add Contact</button>
                 </fieldset>
-            </form >
+            </ form >
 
         )
     }

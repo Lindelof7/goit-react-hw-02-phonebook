@@ -22,32 +22,30 @@ export class App extends Component {
     ], name: PropTypes.string.isRequired,
 
     filter: '',
-
   }
 
 
   addContact = (evt) => {
     evt.preventDefault();
 
-    this.setState(({ contacts }) => {
-      const newContact = {
-        name: evt.target.elements.name.value,
-        id: nextId(),
-        number: evt.target.elements.number.value,
-      }
 
-      const findSame = this.state.contacts.find(contact => contact.name === evt.target.elements.name.value)
+    const newContact = {
+      name: evt.target.elements.name.value,
+      id: nextId(),
+      number: evt.target.elements.number.value,
+    }
 
-      if (findSame) {
-        return Report.failure('You have already added this contact')
-      }
+    const findSame = this.state.contacts.find(contact => contact.name === evt.target.elements.name.value)
 
-      return {
-        contacts: [...contacts, newContact]
-      }
+    if (findSame) {
+      return Report.failure('You have already added this contact')
+    }
+    console.log(this.state.name.length)
+
+    this.setState({
+      contacts: [...this.state.contacts, newContact]
     })
   }
-
   changeFilter = evt =>
     this.setState({ filter: evt.currentTarget.value });
 
@@ -59,6 +57,7 @@ export class App extends Component {
       }
     })
   }
+
 
   render() {
     const { contacts, filter } = this.state;

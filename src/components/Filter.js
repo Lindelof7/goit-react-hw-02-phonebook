@@ -13,5 +13,3 @@ export const Filter = ({ value, onFiltChange }) => {
         /></div>)
 }
 
-
-// contacts.filter(contact => )
